@@ -2,13 +2,14 @@ package com.example.gamepadtest
 
 import com.example.gamepadtest.gamepad.GamePadKeyCode
 import com.example.gamepadtest.gamepad.GamepadManager
+import com.example.gamepadtest.gamepad.GamepadManagerListener
 import javafx.animation.AnimationTimer
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-class GamePadTestApplication : Application(), GamepadManager.Listener {
+class GamePadTestApplication : Application(), GamepadManagerListener {
     private var onFrameTimer: AnimationTimer? = null
     private val gamePadManager: GamepadManager = GamepadManager(this)
     companion object {

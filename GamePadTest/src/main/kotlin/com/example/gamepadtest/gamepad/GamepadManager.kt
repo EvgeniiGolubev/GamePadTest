@@ -10,7 +10,7 @@ import java.util.logging.Logger
 /**
  * GamepadManager running in a separate thread
  */
-class GamepadManager(private val listener: Listener) : CoroutineScope {
+class GamepadManager(private val listener: GamepadManagerListener) : CoroutineScope {
     override val coroutineContext = Dispatchers.IO
     private val gamepadControllers = ConcurrentHashMap<Int, GamepadController>() // all connected controllers
     private val updateAvailableJob: Job
@@ -118,13 +118,5 @@ class GamepadManager(private val listener: Listener) : CoroutineScope {
 
     fun destroy() {
         updateAvailableJob.cancel()
-    }
-
-    /**
-     * Interface for the class that will listen to the GamepadManager
-     */
-    interface Listener {
-        fun gamePadButtonEvent(keyCode: GamePadKeyCode, pressed: Boolean, padId: Int)
-        fun gamePadStickEvent(x: Float, y: Float, padId: Int)
     }
 }
